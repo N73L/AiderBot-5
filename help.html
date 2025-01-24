@@ -1,0 +1,394 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AiderBot</title>
+    <link rel="stylesheet" href="help.css">
+    <style>
+        /* Side Navigation Styles */
+        .side-nav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            z-index: 100;
+        }
+
+        .side-nav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+            
+        }
+
+        .side-nav a:hover {
+            color: #f1f1f1;
+        }
+
+        .side-nav .close-btn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            color: #818181;
+        }
+
+        .open-btn {
+            font-size: 30px;
+            cursor: pointer;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: transparent;
+            border: none;
+            color: #111;
+            z-index: 110;
+        }
+
+        /* Existing styles remain unchanged */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgb(75, 173, 212);
+        }
+
+        .chatbot {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 375px;
+            background-color: #ffffff;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+            border-top: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            max-height: 600px;
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        #chat-window {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        .input-group {
+            display: flex;
+            gap: 5px; /* Space between the input box and button */
+            width: 100%; /* Full width of the chat input */
+        }
+
+        .chat-input {
+            display: flex;
+            border-top: 1px solid #ddd;
+            flex-direction: column;
+            gap: 5px; /* Space between elements */
+            width: 100%; /* Make chat input extend across the screen */
+            padding: 10px;
+        }
+
+        #user-input {
+            flex: 1;
+            padding: 10px;
+            font-size: 1rem;
+            width: 100%; /* Make the input fill available space */
+        }
+
+        #send-btn {
+            background-color: #007bff;
+            color: #fff;
+            font-size: 1rem;
+            padding: 10px 15px;
+            cursor: pointer;
+            width: auto; /* Keep button size based on content */
+        }
+
+        #send-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .chat-option {
+            margin: 5px;
+            padding: 8px 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .chat-option:hover {
+            background-color: #0056b3;
+        }
+
+.title_logo {
+
+font-size: 35px; 
+margin-bottom: 385px;
+margin-right: 820px;
+color: rgb(255, 255, 255);
+  
+}
+
+.logo2 {
+
+position: absolute;
+margin-top: -24px;
+margin-left: -12px;
+width: 60px;
+
+}
+
+.helpcenter {
+
+position: absolute;
+font-size: 33px; 
+margin-bottom: 385px;
+margin-right: -825px;
+color: rgb(255, 255, 255);
+  
+}
+
+/* tab */
+
+.tab-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            border: none;
+            background: #f9f9f9;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .tab.active {
+            background: #007BFF;
+            color: white;
+        }
+
+        .tab:hover {
+            background: #007BFF;
+            color: white;
+        }
+
+        .tab-content {
+            padding: 20px;
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+/* FAQ */
+
+.faq-container {
+            padding: 20px;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+/* Contact */
+
+.contact-box {
+            background: #f4f4f4;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-box h3 {
+            font-size: 16px;
+            margin: 0 0 10px;
+            color: #007BFF;
+        }
+
+.title_logo2 {
+
+font-size: 35px; 
+padding-bottom: 20px;
+color: rgb(75, 173, 212);
+  
+}
+
+.balogo2 {
+
+position: relative;
+margin-bottom: 5px;
+margin-left: -25px;
+width: 55px;
+
+}
+
+    </style>
+</head>
+<body>
+    <!-- Side Navigation Button -->
+    <button style="color: #fff;" class="open-btn" onclick="toggleNav()">☰</button>
+    <h1 class="title_logo">AiderBo <img class="logo2" src="logo2.png" alt=""> </h1>
+    <h1 class="helpcenter">Help Center </h1>
+
+    <!-- Side Navigation Panel -->
+    <div id="sideNav" class="side-nav">
+        <a href="javascript:void(0)" class="close-btn" onclick="toggleNav()">×</a>
+        <h1 class="title_logo2">AiderBo <img class="balogo2" src="logo2.png" alt=""> </h1>
+
+        <ul>
+            <li><a href="chat.html">Chat</a></li>
+            <li><a href="help.html">Help Center</a></li>
+        </ul>
+    </div>
+
+  
+
+    <!-- Chatbot Interface -->
+
+    <div class="chatbot">
+       
+        <div class="tab-container">
+            <div class="tabs">
+              <button class="tab active" onclick="showTab('faq')">FAQ</button>
+              <button class="tab" onclick="showTab('contact')">Contact Us</button>
+            </div>
+            
+
+            <div id="faq" class="tab-content active">
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <h2>What is AiderBot?</h2>
+                        <p>-AIDERBOT is a chatbot designed to assist users with common medical concerns by providing general treatment advice and proven home remedies.</p>
+                      </div>
+                      <div class="faq-item">
+                        <h2>Can AiderBot diagnose medical conditions?</h2>
+                        <P>-No, AIDERBOT cannot diagnose medical conditions. It offers general information and suggestions but should not replace professional medical consultation. </P>
+                      </div>
+                      <div class="faq-item">
+                        <h2>Is the information provided by AiderBot reliable?</h2>
+                        <P>-AIDERBOT provides information based on widely recognized medical knowledge and home remedies. However, it is important to verify the information with a healthcare professional for serious concerns. </P>
+                      </div>
+                      <div class="faq-item">
+                        <h2>Can AiderBot help with emergency situations?</h2>
+                        <P>-AIDERBOT is not designed to handle medical emergencies. In case of an emergency, please contact a healthcare professional or dial emergency services immediately. </P>
+                      </div>
+                      <div class="faq-item">
+                        <h2>Does AiderBot provide personalized medical advice?</h2>
+                        <P>-AIDERBOT offers general guidance based on the symptoms you describe but does not offer personalized medical advice tailored to your specific health history. </P>
+                      </div>
+                      <div class="faq-item">
+                        <h2> Can I use AIDERBOT for children or elderly people?</h2>
+                        <P>-AIDERBOT can provide general advice for both children and elderly individuals, but it is crucial to consult a pediatrician or geriatrician for age-specific concerns. </P>
+                      </div>
+                      <div class="faq-item">
+                        <h2> What should I do if AIDERBOT’s suggestions don’t work or I feel worse? </h2>
+                        <P>-If the suggestions provided by AIDERBOT do not improve your condition or if you feel worse, it is essential to consult a healthcare professional. </P>
+                      </div>
+                      <div class="faq-item">
+                        <h2>How accurate are the home remedies provided by AIDERBOT?</h2>
+                        <P>-The home remedies provided by AIDERBOT are based on established practices, but individual responses may vary. It is always best to consult a professional before trying new treatments. </P>
+                      </div>
+                      <div class="faq-item">
+                        <h2>Can AIDERBOT help with mental health concerns?</h2>
+                        <P>-AIDERBOT can provide general advice on managing stress and anxiety but should not be used as a substitute for professional mental health support.</P>
+                      </div>
+                      <div class="faq-item">
+                        <h2>How can I report an issue or give feedback on AIDERBOT?</h2>
+                        <P>-If you experience any issues or have feedback regarding AIDERBOT, please contact our support team or use the feedback option within the platform.</P>
+                      </div>
+                    </div>
+                </div>
+        
+    
+              
+              <div id="contact" class="tab-content">
+                <p>You can get in touch with us through the platforms below. Our team will reach out as soon as possible.</p>
+                <div class="contact-box">
+                    <h3>Customer Support</h3>
+                    <p><strong>Contact Number:</strong> +1 (555) 123-4567</p>
+                    <p><strong>Email Address:</strong> <a href="mailto:AiderBotHelp@gmail.com">AiderBotHelp@gmail.com</a></p>
+                </div>
+                <div class="contact-box">
+                    <h3>Emergency Hotline</h3>
+                    <p><strong>Philippine Red Cross</strong></p>
+                    <p>143 or (02) 8527-8385 to 95</p>
+                </div>
+            </div>
+        </div>
+    
+      
+
+      
+    
+
+    <script src="script.js"></script>
+    <script>
+        function toggleNav() {
+            var nav = document.getElementById("sideNav");
+            if (nav.style.width === "250px") {
+                nav.style.width = "0";
+            } else {
+                nav.style.width = "250px";
+            }
+        }
+
+        const faqItems = document.querySelectorAll('.faq-item h2');
+
+       faqItems.forEach(item => {
+      item.addEventListener('click', () => {
+      const parent = item.parentElement;
+      parent.classList.toggle('active');
+  });
+});
+
+function showTab(tabName) {
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    // Remove 'active' class from all tabs and tab contents
+    tabs.forEach(tab => tab.classList.remove('active'));
+    tabContents.forEach(content => content.classList.remove('active'));
+
+    // Add 'active' class to the clicked tab and its content
+    document.querySelector(`#${tabName}`).classList.add('active');
+    document.querySelector(`.tab[onclick="showTab('${tabName}')"]`).classList.add('active');
+}
+
+    </script>
+</body>
+</html>

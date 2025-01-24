@@ -1,0 +1,497 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AiderBot</title>
+
+    <link rel="stylesheet" href="styling.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <style>
+
+        /* Side Navigation Styles */
+
+        .side-nav {
+
+            height: 100%;
+
+            width: 0;
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            background-color:  #ffff;
+
+            overflow-x: hidden;
+
+            transition: 0.5s;
+
+            padding-top: 60px;
+
+            z-index: 100;
+
+        }
+
+
+        .side-nav a {
+
+            padding: 8px 8px 8px 32px;
+
+            text-decoration: none;
+
+            font-size: 25px;
+
+            color: #818181;
+
+            display: block;
+
+            transition: 0.3s;
+
+        }
+
+
+        .side-nav a:hover {
+
+            color: #f1f1f1;
+
+        }
+
+
+        .side-nav .close-btn {
+
+            position: absolute;
+
+            top: 0;
+
+            right: 25px;
+
+            font-size: 36px;
+
+            color: #818181;
+
+        }
+
+
+        .open-btn {
+
+            font-size: 30px;
+
+            cursor: pointer;
+
+            position: absolute;
+
+            top: 15px;
+
+            left: 15px;
+
+            background-color: transparent;
+
+            border: none;
+
+            color: #111;
+
+            z-index: 110;
+
+        }
+
+
+        /* Existing styles */
+
+        body {
+
+            background-color: rgb(75, 173, 212);
+
+            overflow-y: auto; /* Enable scrolling */
+
+        }
+
+
+        .front {
+
+            position: fixed;
+
+            bottom: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 410px;
+
+            background-color: #ececec;
+
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+
+            border-top: 1px solid #ddd;
+
+            display: flex;
+
+            flex-direction: column;
+
+            max-height: 800px;
+
+            overflow-y: auto;
+
+        }
+
+
+        .content {
+
+            padding-bottom: 150px; /* Add padding to prevent overlap with chat */
+
+        }
+
+
+        #chat-window {
+
+            flex: 1;
+
+            overflow-y: auto;
+
+        }
+
+
+        .chat-input {
+
+            display: flex;
+
+            border-top: 1px solid #ddd;
+
+            flex-direction: row;
+
+            padding: 10px;
+
+        }
+
+
+        #user-input {
+
+            flex: 1;
+
+            padding: 10px;
+
+            font-size: 1rem;
+
+        }
+
+
+        #send-btn {
+
+            background-color: #007bff;
+
+            color: #fff;
+
+            font-size: 1rem;
+
+            padding: 10px 15px;
+
+            cursor: pointer;
+
+        }
+
+
+        #send-btn:hover {
+
+            background-color: #0056b3;
+
+        }
+
+
+        .disclaimer-box {
+
+            background-color: #4c8fe5;
+
+            color: white;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            text-align: center;
+
+            max-width: 600px;
+
+            margin: 20px auto 100px; /* Add space to make it visible after scrolling */
+
+            font-family: Arial, sans-serif;
+
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+        }
+
+
+        .disclaimer-box h3 {
+
+            margin: 0;
+
+            font-size: 19px;
+
+            text-transform: uppercase;
+
+        }
+
+
+        .disclaimer-box p {
+
+            margin: 10px 0 0;
+
+            font-size: 15px;
+
+        }
+
+
+        .logo {
+
+            width: 50%;
+
+            margin-left: 15px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .logo2 {
+
+            width: 80px;
+
+            margin-left: -29px;
+
+            margin-bottom: 39px;
+
+        }
+
+
+        .title_logo {
+
+            font-size: 40px;
+
+            text-align: center;
+
+            margin-bottom: -40px;
+
+            margin-left: 35px;
+
+            color: rgb(75, 173, 212);
+
+            padding-top: 20px;
+
+        }
+
+
+        .text1 {
+
+            font-size: 18px;
+
+            text-align: center;
+
+            color: rgb(75, 173, 212);
+
+        }
+
+
+        .text2 {
+
+            font-size: 10px;
+
+            text-align: center;
+
+            color: rgb(79, 79, 81);
+
+        }
+
+
+        .header {
+
+            margin-top: 30px;
+
+        }
+
+
+        .title_logo2 {
+
+            font-size: 35px;
+
+            padding-bottom: -30px;
+
+            color: rgb(75, 173, 212);
+
+        }
+
+
+        .balogo2 {
+
+            position: relative;
+
+            margin-bottom: 20px;
+
+            margin-left: -15px;
+
+            width: 55px;
+
+        }
+
+    .bot-message {
+    background-color: #ffffff; /* White bubble */
+    color: #000000; /* Black text */
+    align-self: flex-start;
+    border-radius: 50px; /* More rounded corners */
+    padding: 15px; /* Spacing inside the bubble */
+    max-width: 80%; /* Limit the bubble's width */
+    word-wrap: break-word; /* Ensure text wraps properly */
+    margin: 5px 0; /* Space between messages */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add slight shadow for depth */
+}
+
+.user-message {
+    background-color: #4c8fe5;
+    color: #fff; /* Black text */
+    align-self: right;
+    border-radius: 50px; /* More rounded corners */
+    padding: 15px; /* Spacing inside the bubble */
+    max-width: 80%; /* Limit the bubble's width */
+    word-wrap: break-word; /* Ensure text wraps properly */
+    margin: 5px 0; /* Space between messages */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add slight shadow for depth */
+}
+
+
+
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <div class="header">
+
+        <!-- Side Navigation Button -->
+
+        <button style="color: #fff;" class="open-btn" onclick="toggleNav()">☰</button>
+
+    </div>
+
+    <!-- Side Navigation Panel -->
+
+    <div id="sideNav" class="side-nav">
+
+        <a href="javascript:void(0)" class="close-btn" onclick="toggleNav()">×</a>
+
+        <h1 class="title_logo2">AiderBo <img class="balogo2" src="logo2.png" alt=""></h1>
+
+
+        <ul>
+
+            <li><a href="help.html">Help Center</a></li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- Chatbot Interface -->
+
+    <div class="front container-fluid">
+
+        <div class="row justify-content-center text-center content">
+
+            <div class="col-12 col-md-6">
+
+                <h1 class="title_logo">AiderBo <img class="logo2" src="logo2.png" alt=""></h1>
+
+                <img class="logo img-fluid" src="logo.png" alt="">
+
+            </div>
+
+            <div class="col-12">
+
+                <h2 class="text1">Your Personal Healthcare AI Assistant</h2>
+
+                <h2 class="text2">Provides you general information and proven home 
+
+                    <p>remedies for common medical conditions</p>
+
+                </h2>
+
+            </div>
+
+            <div class="col-12">
+
+                <div class="disclaimer-box">
+
+                    <h3>DISCLAIMER:</h3>
+
+                    <p>
+
+                        Aiderbot is designed to assist with general first aid guidance for common medical conditions. Kindly visit a healthcare provider for more serious cases.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Chat Output -->
+        <div id="chat-output"></div>  <!-- Ensured chat output goes here -->
+
+        <!-- Chat Input -->
+
+        <div class="chat-input">
+
+        <div id="bot-message"></div>
+        <div id="user-message"></div>
+
+            <input type="text" id="user-input" placeholder="Type your message here">
+
+            <button id="send-btn">Send</button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function toggleNav() {
+
+            var nav = document.getElementById("sideNav");
+
+            if (nav.style.width === "250px") {
+
+                nav.style.width = "0";
+
+            } else {
+
+                nav.style.width = "250px";
+
+            }
+
+        }
+
+    </script>
+
+    <script src="newjs.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
+
